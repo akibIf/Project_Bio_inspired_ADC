@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      ics19
+HostName                       chapelle.breguet.centralesupelec.fr
+ProcessIdentifier              26829
+ProcessCreationTime_UTC        1680192426
+ProcessCreationTime_Readable   Thu Mar 30 18:07:06 2023 CEST
+AppIdentifier                  /usr/local/cadence/ic_6.17/tools/dfII/bin/64bit/virtuoso
+OSType                         lnx86
+ReasonForPlacingEditLock       Not specified
+FilePathUsedToEditLock         /home/ics19/SAR_XFAB_TEMPLATE/AA_Project/Bio_ADC/config_ams/expand.cfg
+TimeEditLocked                 Thu Mar 30 18:14:02 2023 CEST

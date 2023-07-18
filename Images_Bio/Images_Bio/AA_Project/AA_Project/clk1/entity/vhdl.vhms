@@ -1,0 +1,9 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.numeric_std.all;
+use std.TEXTIO.ALL ;
+ 
+entity clk1 is
+port (
+clock : out std_logic  );
+end ;

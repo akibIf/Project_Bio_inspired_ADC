@@ -1,0 +1,41 @@
+//Verilog-AMS HDL for "SAR", "switched_comparator" "verilogams"
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module switched_comparator ( gnda, vdda, vinp, vinm, clock, Outp, Outn );
+
+  output Outp;
+  input vinp;
+  output Outn;
+  input vdda;
+  input vinm;
+  input gnda;
+  input clock;
+
+electrical gnda, vdda ;
+electrical vinp, vinm ;
+logic clock;
+logic Outp,Outn ;
+
+reg Outp, Outn ; 
+
+initial 
+  begin
+	Outp = 1 ;
+	Outn = 1 ;
+  end
+
+always@(posedge clock)
+  if  (V(vinp) > V(vinm))
+	Outp = 0 ;
+  else if  (V(vinp) < V(vinm))
+    Outn = 0 ;
+
+always@(negedge clock)
+  begin
+	Outp = 1 ;
+    Outn = 1 ;
+  end
+
+endmodule

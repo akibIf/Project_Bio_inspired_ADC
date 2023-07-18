@@ -1,0 +1,40 @@
+savedComponent = (let
+(tmp1 tmp2 tmp3 tmp4)
+(unless tmp1
+tmp1 = make_sevVariableStruct()
+)
+(unless tmp1
+tmp1 = (ncons nil)
+)
+tmp1->name = "pas"
+tmp1->expression = "3.3/(256*10)"
+tmp1->index = 1
+(unless tmp2
+tmp2 = make_sevVariableStruct()
+)
+(unless tmp2
+tmp2 = (ncons nil)
+)
+tmp2->name = "C"
+tmp2->expression = "12.8p"
+tmp2->index = 2
+(unless tmp3
+tmp3 = make_sevVariableStruct()
+)
+(unless tmp3
+tmp3 = (ncons nil)
+)
+tmp3->name = "ns"
+tmp3->expression = "4u"
+tmp3->index = 3
+(unless tmp4
+tmp4 = make_sevVariableStruct()
+)
+(unless tmp4
+tmp4 = (ncons nil)
+)
+tmp4->name = "ps"
+tmp4->expression = "8u"
+tmp4->index = 4
+list(tmp1 tmp2 tmp3 tmp4)
+)

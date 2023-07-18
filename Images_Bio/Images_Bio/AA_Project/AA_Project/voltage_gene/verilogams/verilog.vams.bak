@@ -1,0 +1,25 @@
+//Verilog-AMS HDL for "SAR", "voltage_gene" "verilogams"
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module voltage_gene ( vout_p, vout_n, clock );
+
+parameter real pas = 0.1 ;  // 0.01
+input clock;
+output vout_p, vout_n;
+electrical vout_p, vout_n; 
+logic clock; 
+
+
+real vlt = 0;
+
+analog begin
+      V(vout_p, vout_n) <+ vlt ;
+end
+
+always @(posedge clock)
+	  vlt=vlt+pas ;
+
+
+endmodule

@@ -1,0 +1,172 @@
+architecture a1 of digital_part is
+
+type statetype is (S_in, S_ref, S_dis_C1C2, S_TVN, S_VTN, S_disC1, S_2XN, S_TVP, S_VTP, S_disC2, S_2XP );
+
+signal state : statetype;
+signal sa     		: std_logic;
+signal sb		    : std_logic;
+signal sc     		: std_logic;
+signal sd		    : std_logic;
+signal se     		: std_logic;
+signal count_reg : unsigned(1 downto 0) := "00"; 
+--signal s				: std_logic_vector(8 downto 0);
+
+begin 
+	process(clock, reset, start)
+
+	variable v1 : integer := 0;
+
+	begin
+
+		if reset 	 = '0' then
+			sa 		 <= '1';
+			sb 		 <= '0';
+			sc		 <= '1';
+			sd 		 <= '1';
+			se 		 <= '0';
+	--		result	 <= (others => '0');
+			--bit_count := 7;
+			state 	 <= S_in;
+			count_reg <= "00";
+
+
+		else 
+			if rising_edge(clock)  then 
+			
+				case state is
+
+					when S_in =>
+						sa 		 <= '0';
+						sb 		 <= '0';
+						sc		 <= '1';
+						sd 		 <= '1';
+						se 		 <= '0';
+						state	<= S_ref;
+
+
+					when S_ref =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						if comp='0' then
+							count_reg <= count_reg + 1;
+						else
+							result <= count_reg;
+							state	<= S_dis_C1C2;
+       				    end if;
+
+
+-- Must stayy here 0-3 clk edge.
+
+
+					when S_dis_C1C2 =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '1';
+						sd 		 <= '1';
+						se 		 <= '0';
+						if v1 = 1 then
+							state	<= S_TVP;
+						else
+							state	<= S_TVN;
+						end if;
+ 
+					when	 S_TVN =>
+						sa 		 <= '1';
+						sb 		 <= '1';
+						sc		 <= '0';
+						sd 		 <= '1';
+						se 		 <= '1';
+						state	<= S_VTN;
+
+					when	 S_VTN =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						state	<= S_disC1;
+
+
+					when	 S_disC1 =>
+						sa 		 <= '1';
+						sb 		 <= '1';
+						sc		 <= '1';
+						sd 		 <= '0';
+						se 		 <= '0';
+						state	<= S_2XN;
+
+					when	 S_2XN =>
+						sa 		 <= '1';
+						sb 		 <= '1';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						v1 := 1;
+						state	<= S_dis_C1C2;
+
+
+					when	 S_TVP =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						state	<= S_VTP;
+
+					when	 S_VTP =>
+						sa 		 <= '1';
+						sb 		 <= '1';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						state	<= S_disC2;
+
+					when	 S_disC2 =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '0';
+						sd 		 <= '1';
+						se 		 <= '0';
+						state	<= S_2XP;
+
+					when	 S_2XP =>
+						sa 		 <= '1';
+						sb 		 <= '0';
+						sc		 <= '0';
+						sd 		 <= '0';
+						se 		 <= '1';
+						v1 := 0;
+						state	<= S_dis_C1C2;
+
+
+			
+				end case;
+			end if;
+		end if;
+end process;
+
+SAp <= sa;
+SAm <= not(sa);
+
+SBp <= sb;
+SBm <= not(sb);
+
+SCp <= sc;
+SCm <= not(sc);
+
+SDp <= sd;
+SDm <= not(sd);
+
+SEp <= se;
+SEm <= not(se);
+
+
+
+
+
+--clkcomp <= not(clock);
+
+end a1;

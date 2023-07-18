@@ -1,0 +1,13 @@
+architecture a1 of clk1 is
+
+--signal reset : std_logic ;
+signal clk : std_logic := '0' ;
+
+
+begin
+
+
+clk <= not clk after 500 ns ;
+clock <= clk ;
+
+end ;

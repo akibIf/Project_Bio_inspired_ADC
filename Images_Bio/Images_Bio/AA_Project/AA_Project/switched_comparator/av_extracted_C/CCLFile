@@ -1,0 +1,42 @@
+#
+# OPTION COMMAND FILE created by Cadence Quantus QRC Extraction Version 14.1.0-p203 from CCL
+#
+capacitance \
+	 -decoupling_factor 1.0 \
+	 -ground_net "dummy"
+extract \
+	 -selection "all" \
+	 -type "c_only_coupled"
+extraction_setup \
+	 -net_name_space "SCHEMATIC"
+filter_coupling_cap \
+	 -coupling_cap_threshold_absolute 0.01 \
+	 -coupling_cap_threshold_relative 0.001
+input_db -type assura \
+	 -design_cell_name "switched_comparator layout SAR" \
+	 -directory_name "/home/SEproj/PB_sigmadelta_II/ASSURA_LVS/switched_comparator" \
+	 -format "DFII" \
+	 -run_name "switched_comparator"
+log_file \
+	 -file_name "ASSURA_LVS/switched_comparator/qrc.switched_comparator.log"
+mos_diffusion_parameter_extraction \
+	 -res "fast"
+output_db -type extracted_view \
+	 -cap_component "pcapacitor auLvs PRIMLIB" \
+	 -cap_property_name "c" \
+	 -enable_cellview_check false \
+	 -include_cap_model "false" \
+	 -include_parasitic_cap_model "false" \
+	 -include_parasitic_res_model "comment" \
+	 -include_res_model "false" \
+	 -view_name "av_extracted_C"
+output_setup \
+	 -directory_name "/home/SEproj/PB_sigmadelta_II/ASSURA_LVS/switched_comparator" \
+	 -temporary_directory_name "switched_comparator"
+process_technology \
+	 -technology_corner \
+		"Typical" \
+	 -technology_library_file "/home/SEproj/PB_sigmadelta_II/assura_tech.lib" \
+	 -technology_name "c35b4c3"
+
+

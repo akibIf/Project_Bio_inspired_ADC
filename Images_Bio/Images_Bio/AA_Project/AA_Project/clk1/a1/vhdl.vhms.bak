@@ -1,0 +1,9 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.numeric_std.all;
+use std.TEXTIO.ALL ;
+ 
+
+architecture a1 of clk1 is
+begin
+end a1;

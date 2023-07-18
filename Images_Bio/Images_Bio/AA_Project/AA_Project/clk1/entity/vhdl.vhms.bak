@@ -1,0 +1,5 @@
+library ieee, std;
+use ieee.std_logic_1164.all;
+use ieee.electrical_systems.all;
+entity clk1 is
+end clk1;
